@@ -18,17 +18,17 @@ namespace BuyCars.DATA.Repositories
         }
         public List<Order> getList()
         {
-            return _dataContext.orders;
+            return _dataContext.orders.ToList();
         }
         public Order Get(int id)
         {
-            foreach (var item in _dataContext.orders) { if (item.Id == id) return item; }
+            foreach (var item in _dataContext.orders.ToList()) { if (item.Id == id) return item; }
             return null;
         }
         public List<Order> Getbyid(int idofper)
         {
             List<Order> l = new List<Order>();
-            foreach (var item in _dataContext.orders) { if (item.CastomerId == idofper) l.Add(item); }
+            foreach (var item in _dataContext.orders.ToList()) { if (item.CastomerId == idofper) l.Add(item); }
             return l;
         }
         public void Post(DateTime dateOfOrder, int castomerId, Car c)
@@ -38,20 +38,20 @@ namespace BuyCars.DATA.Repositories
         public void Put(int id, DateTime d)
         {
 
-            for (int i = 0; i < _dataContext.orders.Count; i++)
+            for (int i = 0; i < _dataContext.orders.ToList().Count; i++)
             {
-                if (_dataContext.orders[i].Id == id)
+                if (_dataContext.orders.ToList()[i].Id == id)
                 {
-                    _dataContext.orders[i].dateOfOrder = d;
+                    _dataContext.orders.ToList()[i].dateOfOrder = d;
                 }
             }
         }
         public void Delete(int id)
         {
 
-            for (int i = 0; i < _dataContext.orders.Count; i++)
+            for (int i = 0; i < _dataContext.orders.ToList().Count; i++)
             {
-                if (_dataContext.orders[i].Id == id) { _dataContext.orders.RemoveAt(i); }
+                if (_dataContext.orders.ToList()[i].Id == id) { _dataContext.orders.ToList().RemoveAt(i); }
             }
         }
     }

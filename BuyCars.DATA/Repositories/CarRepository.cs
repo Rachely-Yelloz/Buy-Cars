@@ -19,12 +19,12 @@ namespace BuyCars.DATA.Repositories
         }
         public List<Car> getList()
         {
-            return _dataContext.cars;
+            return _dataContext.cars.ToList();
         }
       public  List<Car> GetSold()
         {
             List<Car> carNotAvialable = new List<Car>();
-            foreach (var car in _dataContext.cars)
+            foreach (var car in _dataContext.cars.ToList())
             {
                 if (!car.status)
                     carNotAvialable.Add(car);
@@ -41,7 +41,7 @@ namespace BuyCars.DATA.Repositories
         public List<Car> GetBycompany(string company)
         {
             List < Car > cars = new List<Car>();
-            foreach (var car in _dataContext.cars)
+            foreach (var car in _dataContext.cars.ToList())
                 if (car.Company==company)
                     cars.Add(car);
             return cars;
@@ -52,13 +52,13 @@ namespace BuyCars.DATA.Repositories
         }
         public void Put(int id,  string? company, double price)
         {
-            for (int i = 0; i <_dataContext.cars.Count; i++)
+            for (int i = 0; i <_dataContext.cars.ToList().Count; i++)
             {
-                if (_dataContext.cars[i].Id == id)
+                if (_dataContext.cars.ToList()[i].Id == id)
                 {
                     if (company != null)
-                        _dataContext.cars[i].Company = company;
-                    _dataContext.cars[i].Price = price;
+                        _dataContext.cars.ToList()[i].Company = company;
+                    _dataContext.cars.ToList()[i].Price = price;
                 }
             }
         }

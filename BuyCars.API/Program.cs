@@ -17,10 +17,9 @@ builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ICarRepository,CarRepository>();
 builder.Services.AddScoped<ICastomerService, CastomerService>();
 builder.Services.AddScoped<ICastomerRepository, CastomerRepository>();
-
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddSingleton<DataContext>();
+builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 

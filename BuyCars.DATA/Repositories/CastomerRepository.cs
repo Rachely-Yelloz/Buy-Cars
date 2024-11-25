@@ -18,11 +18,11 @@ namespace BuyCars.DATA.Repositories
         }
         public List<Castomer> getList()
         {
-            return _dataContext.castomers;
+            return _dataContext.castomers.ToList();
         }
         public Castomer Get(int id)
         {
-            foreach (Castomer castomer in _dataContext.castomers)
+            foreach (Castomer castomer in _dataContext.castomers.ToList())
             {
                 if(castomer.id==id)
                     return castomer;
@@ -31,39 +31,39 @@ namespace BuyCars.DATA.Repositories
         }
         public void Post( string name, string phone)
         {
-            _dataContext.castomers.Add(new Castomer() { id=0, name=name, phone=phone });
+            _dataContext.castomers.ToList().Add(new Castomer() { id=0, name=name, phone=phone });
         }
         public void Put(int id,string name, string phone)
         {
 
-            for (int i = 0; i < _dataContext.castomers.Count; i++)
+            for (int i = 0; i < _dataContext.castomers.ToList().Count; i++)
             {
-                if (_dataContext.castomers[i].id == id)
+                if (_dataContext.castomers.ToList()[i].id == id)
                 {
-                    _dataContext.castomers[i].name = name;
-                    _dataContext.castomers[i].phone = phone;
+                    _dataContext.castomers.ToList()[i].name = name;
+                    _dataContext.castomers.ToList()[i].phone = phone;
                     return;
                 }
             }
         }
         public void PutOnlyPhone(int id, string phone)
         {
-            for (int i = 0; i < _dataContext.castomers.Count; i++)
+            for (int i = 0; i < _dataContext.castomers.ToList().Count; i++)
             {
-                if (_dataContext.castomers[i].id == id)
+                if (_dataContext.castomers.ToList()[i].id == id)
                 {
-                    _dataContext.castomers[i].phone = phone;
+                    _dataContext.castomers.ToList()[i].phone = phone;
                     return;
                 }
             }
         }
         public void Delete(int id)
         {
-            for (int i = 0; i < _dataContext.castomers.Count; i++)
+            for (int i = 0; i < _dataContext.castomers.ToList().Count; i++)
             {
-                if (_dataContext.castomers[i].id == id)
+                if (_dataContext.castomers.ToList()[i].id == id)
                 {
-                    _dataContext.castomers.RemoveAt(i);
+                    _dataContext.castomers.ToList().RemoveAt(i);
                     return;
                 }
 

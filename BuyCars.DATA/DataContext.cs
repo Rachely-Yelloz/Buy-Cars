@@ -1,4 +1,5 @@
 ﻿using BuyCars.CORE.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,15 @@ using System.Threading.Tasks;
 
 namespace BuyCars.DATA
 {
-    public class DataContext
+    public class DataContext:DbContext
     {
-        public List<Car> cars { get; set; }
-        public List<Castomer> castomers { get; set; }
-        public List<Order> orders { get; set; }
-        public DataContext()
+        public DbSet<Car> cars { get; set; }
+        public DbSet<Castomer> castomers { get; set; }
+        public DbSet<Order> orders { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            cars = new List<Car> { new Car() { Id = 1, Company = "toyota", Price = 15000, status = true } };
-            castomers = new List<Castomer> { new Castomer() { id = 1, name = "dan", phone = "0548562845" } };
-            orders = new List<Order> { new Order() { Id = 1,car = new Car() { Id = 1,Company="toyota",Price=10000
-            ,status = true },CastomerId=1,dateOfOrder=new DateTime() } };
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=my_db");
         }
     }
 }
